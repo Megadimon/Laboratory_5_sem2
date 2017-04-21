@@ -5,10 +5,10 @@ using namespace std;
 
 int main()
 {
-	BinarySearchTree tree;
+	BinarySearchTree<int, char> tree;
 	cin >> tree;
-	cout << tree;
 
+	cout << tree;
 
 	system("pause");
 	return 0;

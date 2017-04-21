@@ -4,78 +4,87 @@
 
 using namespace std;
 
+template <typename TKey, typename TData>
+istream& operator >> (istream& str, const BinarySearchTree<TKey, TData>& tree);
 
+template <typename TKey, typename TData>
+ostream& operator<< (ostream& str, const BinarySearchTree<TKey, TData>& tree);
+
+template <typename TKey, typename TData>
 class BinarySearchTree
 {
-	TreeNode* _root;
+	TreeNode<TKey, TData>* _root;
 public:
 	BinarySearchTree();
-	void insert(int data);
-	
-	bool find(int data);	
+	TreeNode<TKey, TData>* getRoot() const { return _root; }
+
+
+	void insert(const TKey& key, const TData& data);
+	TData* find(const TKey& key);	
+	void print(ostream& str, TreeNode<TKey, TData>* subTree, int lvl) const;
 	~BinarySearchTree();
 
 private:
 
-	void recursiveInsert(TreeNode* subTree, int data);
-	bool recursiveFind(TreeNode* subTree, int data);
-	void print(ostream& str, TreeNode* subTree, int lvl) const;
-
-	friend ostream& operator<< (ostream& str, const BinarySearchTree& tree);
+	void recursiveInsert(TreeNode<TKey, TData>* subTree, const TKey& key, const TData& data);
+	TData* recursiveFind(TreeNode<TKey, TData>* subTree, const TKey& key);	
 };
-istream& operator>> (istream& str, const BinarySearchTree& tree);
 
-BinarySearchTree::BinarySearchTree()
+
+template <typename TKey, typename TData>
+BinarySearchTree<TKey, TData>::BinarySearchTree()
 {
 	_root = 0;
 }
 
-void BinarySearchTree::insert(int data)
+template <typename TKey, typename TData>
+void BinarySearchTree<TKey, TData>::insert(const TKey& key, const TData& data)
 {
 	if (!_root)
-		_root = new TreeNode(0, data, 0, 0);
+		_root = new TreeNode<TKey, TData>(0, key, data, 0, 0);
 	else
-		recursiveInsert(_root, data);
+		recursiveInsert(_root, key, data);
 }
-
-void BinarySearchTree::recursiveInsert(TreeNode* subTree, int data)
+template <typename TKey, typename TData>
+void BinarySearchTree<TKey, TData>::recursiveInsert(TreeNode<TKey, TData>* subTree, const TKey& key, const TData& data)
 {
-	if (subTree->getData() == data)
-		cout << "Elemet " << data << " is exist" << endl;
-	else if (subTree->getData() < data)
+	if (subTree->getKey() == key)
+		cout << "Elemet with key " << key << " is exist" << endl;
+	else if (subTree->getKey() < key)
 	{
 		if (subTree->getRight())
-			recursiveInsert(subTree->getRight(),data);
+			recursiveInsert(subTree->getRight(), key, data);
 		else
-			subTree->setRight(new TreeNode(0, data, 0, 0));
+			subTree->setRight(new TreeNode<TKey, TData>(0, key, data, 0, 0));
 	}
 	else
 	{
 		if (subTree->getLeft())
-			recursiveInsert(subTree->getLeft(),data);
+			recursiveInsert(subTree->getLeft(), key, data);
 		else
-			subTree->setLeft(new TreeNode(0,data, 0, 0));
+			subTree->setLeft(new TreeNode<TKey, TData>(0, key, data, 0, 0));
 	}
 }
-
-bool  BinarySearchTree::find(int data)
+template <typename TKey, typename TData>
+TData*  BinarySearchTree<TKey, TData>::find(const TKey& data)
 {
 	return recursiveFind(_root, data);
 }
-S
-bool BinarySearchTree::recursiveFind(TreeNode* subtree, int data)
+template <typename TKey, typename TData>
+TData* BinarySearchTree<TKey, TData>::recursiveFind(TreeNode<TKey, TData>* subtree, const TKey& key)
 {
 	if (!subtree)
-		return false;
-	else if (subtree->getData() == data)
-		return true;
-	else if (subtree->getData() < data)
-		return recursiveFind(subtree->getRight(), data);
+		return NULL;
+	else if (subtree->getKey() == key)
+		return &(subtree->_data);
+	else if (subtree->getKey() < key)
+		return recursiveFind(subtree->getRight(), key);
 	else
-		return recursiveFind(subtree->getLeft(), data);
+		return recursiveFind(subtree->getLeft(), key);
 }
 
-void BinarySearchTree::print(ostream& str, TreeNode* subTree, int lvl) const
+template <typename TKey, typename TData>
+void BinarySearchTree<TKey, TData>::print(ostream& str, TreeNode<TKey, TData>* subTree, int lvl) const
 {
 	if (subTree->getRight())
 		print(str, subTree->getRight(), lvl + 1);
@@ -89,30 +98,35 @@ void BinarySearchTree::print(ostream& str, TreeNode* subTree, int lvl) const
 }
 
 
-BinarySearchTree::~BinarySearchTree()
+template <typename TKey, typename TData>
+BinarySearchTree<TKey, TData>::~BinarySearchTree()
 {
 }
 
 
-
-istream& operator >> (istream& str, BinarySearchTree& tree)
+template <typename TKey, typename TData>
+istream& operator >> (istream& str, BinarySearchTree<TKey, TData>& tree)
 {
 	char c = 0;
 	str >> c;
 	if (c != '[')
 		return str;
-	int data = 0;
+	TKey key;
+	TData data;
 	while (str.peek() != ']')
 	{
+		str >> key;
 		str >> data;
-		tree.insert(data);
+		tree.insert(key, data);
 	}
 
 	return str;
 }
-ostream& operator<< (ostream& str, const BinarySearchTree& tree)
+
+template <typename TKey, typename TData>
+ostream& operator<< (ostream& str, const BinarySearchTree<TKey, TData>& tree)
 {
-	tree.print(str, tree._root, 0);
+	tree.print(str, tree.getRoot(), 0);
 
 	return str;
 }
