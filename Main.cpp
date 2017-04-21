@@ -1,4 +1,5 @@
 #include <iostream>
+#include<vector>
 #include "BinarySearchTree.h"
 using namespace std;
 
@@ -6,29 +7,27 @@ using namespace std;
 int main()
 {
 	BinarySearchTree<int, char> tree;
+	vector<exception> errors;
 
 
 	int n = 0;
 
-	cin >> n;
+	cin >> tree;
+
+
+	for (int i = 0; i < errors.size(); ++i)
+		cout << errors[i].what() << endl;
+	
+	cout << tree;
 
 	for (int i = 0; i < n; ++i)
 	{
 		int k = 0;
-		char v = 0;
-		cin >> k >> v;
-		try
-		{ 
-			tree.insert(k, v);
-		}
-		catch (exception e)
-		{
-		  cout << e.what() << endl;
-		}
+		cin >> k;
+		tree.remove(k);
+
+		cout << tree;
 	}
-
-
-	cout << tree;
 
 	system("pause");
 	return 0;

@@ -6,17 +6,6 @@
 using namespace std;
 
 
-//struct kvPair
-//{
-//	int key;
-//	int data;
-//	kvPair(int k, int d)	
-//	{
-//		key = k;
-//		data = d;
-//	}
-//};
-
 
 template <typename TKey, typename TData>
 istream& operator >> (istream& str, const BinarySearchTree<TKey, TData>& tree);
@@ -34,9 +23,8 @@ public:
 
 
 	void insert(const TKey& key, const TData& data);
-	//kvPair find(int key);
 	TData* find(const TKey& key);
-	//void remove(int key);
+	void remove(const TKey& key);
 	void print(ostream& str, TreeNode<TKey, TData>* subTree, int lvl) const;
 	~BinarySearchTree();
 
@@ -44,6 +32,7 @@ private:
 
 	void recursiveInsert(TreeNode<TKey, TData>* subTree, const TKey& key, const TData& data);
 	TData* recursiveFind(TreeNode<TKey, TData>* subTree, const TKey& key);
+	TreeNode<TKey, TData>* recursiveFindNode(TreeNode<TKey, TData>* subTree, const TKey& key);
 };
 
 
@@ -86,6 +75,41 @@ TData*  BinarySearchTree<TKey, TData>::find(const TKey& data)
 {
 	return recursiveFind(_root, data);
 }
+
+template<typename TKey, typename TData>
+void BinarySearchTree<TKey, TData>::remove(const TKey& key)
+{
+	TreeNode<TKey, TData>* node = recursiveFindNode(_root, key);
+
+	if (node)
+	{
+		if (node->getRight())
+		{
+			TreeNode<TKey, TData>* min = node->getRight();
+			while (min->getLeft()) min = min->getLeft();
+
+			min->setLeft(node->getLeft());
+			if (node == _root) { _root = node->getRight(); if(_root) _root->setParent(0); }
+			else 
+			{
+				if (node == node->getParent()->getRight()) { node->getParent()->setRight(node->getRight()); }
+				else { node->getParent()->setLeft(node->getRight()); }
+			}
+		}
+		else
+		{
+			if (node == _root) { _root = node->getLeft(); if (_root) _root->setParent(0); }
+			else
+			{
+				if (node == node->getParent()->getRight()) { node->getParent()->setRight(node->getLeft()); }
+				else { node->getParent()->setLeft(node->getLeft()); }
+			}
+		}
+
+		delete node;
+	}
+}
+
 template <typename TKey, typename TData>
 TData* BinarySearchTree<TKey, TData>::recursiveFind(TreeNode<TKey, TData>* subtree, const TKey& key)
 {
@@ -97,6 +121,19 @@ TData* BinarySearchTree<TKey, TData>::recursiveFind(TreeNode<TKey, TData>* subtr
 		return recursiveFind(subtree->getRight(), key);
 	else
 		return recursiveFind(subtree->getLeft(), key);
+}
+
+template<typename TKey, typename TData>
+TreeNode<TKey, TData>* BinarySearchTree<TKey, TData>::recursiveFindNode(TreeNode<TKey, TData>* subTree, const TKey & key)
+{
+	if (!subTree)
+		return NULL;
+	else if (subTree->getKey() == key)
+		return subTree;
+	else if (subTree->getKey() < key)
+		return recursiveFindNode(subTree->getRight(), key);
+	else
+		return recursiveFindNode(subTree->getLeft(), key);
 }
 
 template <typename TKey, typename TData>
@@ -117,6 +154,8 @@ void BinarySearchTree<TKey, TData>::print(ostream& str, TreeNode<TKey, TData>* s
 template <typename TKey, typename TData>
 BinarySearchTree<TKey, TData>::~BinarySearchTree()
 {
+	while (_root)
+	remove(_root->getKey());
 }
 
 
@@ -142,8 +181,8 @@ istream& operator >> (istream& str, BinarySearchTree<TKey, TData>& tree)
 template <typename TKey, typename TData>
 ostream& operator<< (ostream& str, const BinarySearchTree<TKey, TData>& tree)
 {
-	tree.print(str, tree.getRoot(), 0);
+	if(tree.getRoot())
+		tree.print(str, tree.getRoot(), 0);
 
 	return str;
 }
-
