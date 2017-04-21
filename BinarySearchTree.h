@@ -1,8 +1,22 @@
 #include"treeNode.h"
+#include<exception>
 #include<fstream>
 #include<iostream>
 
 using namespace std;
+
+
+//struct kvPair
+//{
+//	int key;
+//	int data;
+//	kvPair(int k, int d)	
+//	{
+//		key = k;
+//		data = d;
+//	}
+//};
+
 
 template <typename TKey, typename TData>
 istream& operator >> (istream& str, const BinarySearchTree<TKey, TData>& tree);
@@ -20,14 +34,16 @@ public:
 
 
 	void insert(const TKey& key, const TData& data);
-	TData* find(const TKey& key);	
+	//kvPair find(int key);
+	TData* find(const TKey& key);
+	//void remove(int key);
 	void print(ostream& str, TreeNode<TKey, TData>* subTree, int lvl) const;
 	~BinarySearchTree();
 
 private:
 
 	void recursiveInsert(TreeNode<TKey, TData>* subTree, const TKey& key, const TData& data);
-	TData* recursiveFind(TreeNode<TKey, TData>* subTree, const TKey& key);	
+	TData* recursiveFind(TreeNode<TKey, TData>* subTree, const TKey& key);
 };
 
 
@@ -49,7 +65,7 @@ template <typename TKey, typename TData>
 void BinarySearchTree<TKey, TData>::recursiveInsert(TreeNode<TKey, TData>* subTree, const TKey& key, const TData& data)
 {
 	if (subTree->getKey() == key)
-		cout << "Elemet with key " << key << " is exist" << endl;
+		throw exception("Key already exist");
 	else if (subTree->getKey() < key)
 	{
 		if (subTree->getRight())
@@ -92,7 +108,7 @@ void BinarySearchTree<TKey, TData>::print(ostream& str, TreeNode<TKey, TData>* s
 	for (unsigned int i = 0; i < lvl; ++i)
 		str << '-';
 	str << ' ' << subTree->getData() << endl;
-	
+
 	if (subTree->getLeft())
 		print(str, subTree->getLeft(), lvl + 1);
 }
@@ -130,3 +146,4 @@ ostream& operator<< (ostream& str, const BinarySearchTree<TKey, TData>& tree)
 
 	return str;
 }
+
