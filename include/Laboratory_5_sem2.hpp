@@ -53,7 +53,7 @@ public:
 	int remove(int check, const TKey& key);
 	int print(int check, ostream& str, TreeNode<TKey, TData>* subTree, int lvl, int* n) const;
 	int print1(int check, ostream& str, TreeNode<TKey, TData>* subTree, int lvl) const;
-	~BinarySearchTree();
+	
 	
 	void recursiveInsert(TreeNode<TKey, TData>* subTree, const TKey& key, const TData& data);
 	TData* recursiveFind(TreeNode<TKey, TData>* subTree, const TKey& key);
