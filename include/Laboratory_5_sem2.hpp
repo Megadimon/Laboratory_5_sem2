@@ -176,15 +176,14 @@ int BinarySearchTree<TKey, TData>::print(int check, TreeNode<TKey, TData>* subTr
 template <typename TKey, typename TData>
 int BinarySearchTree<TKey, TData>::print1(int check, TreeNode<TKey, TData>* subTree, int lvl) 
 {
-	if (subTree->getRight())
-		print1(str, subTree->getRight(), lvl + 1);
+	if (subTree->getRight()){}
+		
 
 	for (int i = 0; i < lvl; ++i)
-		str << '-';
-	str << ' ' << subTree->getData() << endl;
+		cout << '-';
+	cout << ' ' << subTree->getData() << endl;
 
 	if (subTree->getLeft())
-		print1(str, subTree->getLeft(), lvl + 1);
-
+		
 	return check;
 }
