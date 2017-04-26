@@ -8,14 +8,15 @@ SCENARIO("insert") {
     
     REQUIRE( rv == 10);
 }
-/*
+
 SCENARIO("print") {
-    BinarySearchTree<unsigned int> r;
-    BinarySearchTree<unsigned int>* root;
-    int rv = r.print(11, root);
+    BinarySearchTree<int, char> r;
+    BinarySearchTree<int, char>* TreeNode;
+    int rv = r.print(11, "abc",1, 'a', 3);
     
     REQUIRE( rv == 11);
 }
+/*
 SCENARIO("Search") {
     BinarySearchTree<unsigned int> r;
     BinarySearchTree<unsigned int>* root;
