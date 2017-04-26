@@ -50,8 +50,7 @@ public:
 	int insert(int check, const TKey& key, const TData& data);
 	TData* find(int check, const TKey& key);
 	int remove(int check, const TKey& key);
-	int print(int check, TreeNode<TKey, TData>* subTree, int lvl, int* n) ;
-	int print1(int check, TreeNode<TKey, TData>* subTree, int lvl) ;
+	int print(int check, TreeNode<TKey, TData>* subTree, int lvl) ;
 	
 	
 	void recursiveInsert(TreeNode<TKey, TData>* subTree, const TKey& key, const TData& data);
@@ -173,17 +172,4 @@ int BinarySearchTree<TKey, TData>::print(int check, TreeNode<TKey, TData>* subTr
 	return check;
 }
 
-template <typename TKey, typename TData>
-int BinarySearchTree<TKey, TData>::print1(int check, TreeNode<TKey, TData>* subTree, int lvl) 
-{
-	if (subTree->getRight()){}
-		
 
-	for (int i = 0; i < lvl; ++i)
-		cout << '-';
-	cout << ' ' << subTree->getData() << endl;
-
-	if (subTree->getLeft())
-		
-	return check;
-}
