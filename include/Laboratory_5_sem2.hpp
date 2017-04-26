@@ -74,9 +74,8 @@ int BinarySearchTree<TKey, TData>::insert(int check, const TKey& key, const TDat
 template <typename TKey, typename TData>
 void BinarySearchTree<TKey, TData>::recursiveInsert(TreeNode<TKey, TData>* subTree, const TKey& key, const TData& data)
 {
-	if (subTree->getKey() == key)
-
-	else if (subTree->getKey() < key)
+	
+	 if (subTree->getKey() < key)
 	{
 		if (subTree->getRight())
 			recursiveInsert(subTree->getRight(), key, data);
