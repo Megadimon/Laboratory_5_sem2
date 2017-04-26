@@ -44,7 +44,6 @@ class BinarySearchTree
 {
 	TreeNode<TKey, TData>* _root;
 public:
-	BinarySearchTree();
 	TreeNode<TKey, TData>* getRoot() const { return _root; }
 
 
