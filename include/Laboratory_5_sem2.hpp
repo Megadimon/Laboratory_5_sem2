@@ -159,13 +159,13 @@ TreeNode<TKey, TData>* BinarySearchTree<TKey, TData>::recursiveFindNode(TreeNode
 }
 
 template <typename TKey, typename TData>
-int BinarySearchTree<TKey, TData>::print(int check, TreeNode<TKey, TData>* subTree, int lvl, int* n) 
+int BinarySearchTree<TKey, TData>::print(int check, TreeNode<TKey, TData>* subTree, int lvl) 
 {
 	if (subTree->getRight()){}
 		
 
 	cout << ' ' << subTree->getData() << ' ';
-	++(*n);
+	
 
 	if (subTree->getLeft()){}
 		
