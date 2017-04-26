@@ -12,7 +12,7 @@ SCENARIO("insert") {
 SCENARIO("print") {
     BinarySearchTree<int, char> r;
     BinarySearchTree<int, char>* TreeNode;
-    int rv = r.print(11, "abc",1, 'a', 3);
+    int rv = r.print(11, "abc", 'a', 1 , 3);
     
     REQUIRE( rv == 11);
 }
