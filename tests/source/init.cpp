@@ -4,7 +4,7 @@
 SCENARIO("insert") {
     BinarySearchTree<int, char> r;
     BinarySearchTree<int, char>* TreeNode;
-    int rv = r.insert(10, TreeNode);
+    int rv = r.insert(10, 1, 'a');
     
     REQUIRE( rv == 10);
 }
