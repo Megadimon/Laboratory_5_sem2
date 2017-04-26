@@ -50,8 +50,8 @@ public:
 	int insert(int check, const TKey& key, const TData& data);
 	TData* find(int check, const TKey& key);
 	int remove(int check, const TKey& key);
-	int print(int check, ostream& str, TreeNode<TKey, TData>* subTree, int lvl, int* n) ;
-	int print1(int check, ostream& str, TreeNode<TKey, TData>* subTree, int lvl) ;
+	int print(int check, TreeNode<TKey, TData>* subTree, int lvl, int* n) ;
+	int print1(int check, TreeNode<TKey, TData>* subTree, int lvl) ;
 	
 	
 	void recursiveInsert(TreeNode<TKey, TData>* subTree, const TKey& key, const TData& data);
@@ -159,22 +159,22 @@ TreeNode<TKey, TData>* BinarySearchTree<TKey, TData>::recursiveFindNode(TreeNode
 }
 
 template <typename TKey, typename TData>
-int BinarySearchTree<TKey, TData>::print(int check, ostream& str, TreeNode<TKey, TData>* subTree, int lvl, int* n) 
+int BinarySearchTree<TKey, TData>::print(int check, TreeNode<TKey, TData>* subTree, int lvl, int* n) 
 {
-	if (subTree->getRight())
-		print(str, subTree->getRight(), lvl + 1, n);
+	if (subTree->getRight()){}
+		
 
-	str << ' ' << subTree->getData() << ' ';
+	cout << ' ' << subTree->getData() << ' ';
 	++(*n);
 
-	if (subTree->getLeft())
-		print(str, subTree->getLeft(), lvl + 1, n);
+	if (subTree->getLeft()){}
+		
 
 	return check;
 }
 
 template <typename TKey, typename TData>
-int BinarySearchTree<TKey, TData>::print1(int check, ostream& str, TreeNode<TKey, TData>* subTree, int lvl) 
+int BinarySearchTree<TKey, TData>::print1(int check, TreeNode<TKey, TData>* subTree, int lvl) 
 {
 	if (subTree->getRight())
 		print1(str, subTree->getRight(), lvl + 1);
