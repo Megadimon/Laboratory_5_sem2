@@ -12,7 +12,7 @@ SCENARIO("insert") {
 	BST.insert(1,'a');
 	REQUIRE(BST.key() == 1);
 	REQUIRE(BST.data() == 'a');
-	REQUIRE(BST.root() == 0);
+	REQUIRE(BST.subTree() == 0);
    
    
 }
