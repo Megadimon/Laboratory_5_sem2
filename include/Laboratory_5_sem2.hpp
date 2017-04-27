@@ -1,6 +1,4 @@
 #include <iostream>
-#include <exception>
-#include <limits>
 #include <fstream>
 using namespace std;
 
@@ -98,7 +96,6 @@ template <typename TKey, typename TData>
 void BinarySearchTree<TKey, TData>::recursiveInsert(TreeNode<TKey, TData>* subTree, const TKey& key, const TData& data)
 {
 	if (subTree->getKey() == key)
-		throw exception("Key already exist");
 	else if (subTree->getKey() < key)
 	{
 		if (subTree->getRight())
@@ -222,18 +219,18 @@ istream& operator >> (istream& str, BinarySearchTree<TKey, TData>& tree)
 	char c = 0;
 	str >> c;
 	if (c != '[')
-		throw exception("Invalid format");
+		
 	TKey key;
 	TData data;
 	while (str.peek() != ']')
 	{
 		str >> key;
 		if (str.fail())
-			throw exception("Invalid key value");
+			
 
 		str >> data;
 		if (str.fail())
-			throw exception("Invalid data value");
+			
 
 		tree.insert(key, data);
 	}
@@ -260,34 +257,4 @@ ostream& operator << (ostream& str, const BinarySearchTree<TKey, TData>& tree)
 }
 
 
-int main()
-{
-	BinarySearchTree<int, char> tree;
-   
-	int n = 0;
-	cin >> n;
-	try
-	{
-		cin >> tree;
-	}
-	catch (exception e)
-	{
-		cin.clear();
-		cin.ignore(numeric_limits<int>::max(), '\n');
-		cout << e.what() << endl;
-	}
-	
-	cout << tree;
-	
-	for (int i = 0; i < n; ++i)
-	{
-		int k = 0;
-		cin >> k;
-		tree.remove(k);
 
-		cout << tree;
-	}
-
-	system("pause");
-	return 0;
-}
