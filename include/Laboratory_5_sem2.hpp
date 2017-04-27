@@ -96,6 +96,7 @@ template <typename TKey, typename TData>
 void BinarySearchTree<TKey, TData>::recursiveInsert(TreeNode<TKey, TData>* subTree, const TKey& key, const TData& data)
 {
 	if (subTree->getKey() == key)
+		cout << "Elemet " << data << " is exist" << endl;
 	else if (subTree->getKey() < key)
 	{
 		if (subTree->getRight())
@@ -219,19 +220,13 @@ istream& operator >> (istream& str, BinarySearchTree<TKey, TData>& tree)
 	char c = 0;
 	str >> c;
 	if (c != '[')
-		
+	return str;	
 	TKey key;
 	TData data;
 	while (str.peek() != ']')
 	{
 		str >> key;
-		if (str.fail())
-			
-
 		str >> data;
-		if (str.fail())
-			
-
 		tree.insert(key, data);
 	}
 	str.get();
