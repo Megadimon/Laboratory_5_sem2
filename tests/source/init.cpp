@@ -6,15 +6,17 @@ SCENARIO ("constructor"){
 	REQUIRE(BST.Get_Root() == 0);
 }
     
- /*  
-SCENARIO("insert") {
-    BinarySearchTree<int, char> r;
-    BinarySearchTree<int, char>* TreeNode;
-    int rv = r.insert(10, 1, 'a');
-    
-    REQUIRE( rv == 10);
-}
 
+SCENARIO("insert") {
+   BinarySearchTree<int,char> BST;
+	BST.insert(1,'a');
+	REQUIRE(bst.key() == 1);
+	REQUIRE(bst.data() == 'a');
+	REQUIRE(bst.root() == 0);
+   
+   
+}
+/*
 SCENARIO("print") {
     BinarySearchTree<int, char> r;
     BinarySearchTree<int, char>* TreeNode;
