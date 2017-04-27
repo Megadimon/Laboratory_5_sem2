@@ -96,6 +96,7 @@ template <typename TKey, typename TData>
 void BinarySearchTree<TKey, TData>::recursiveInsert(TreeNode<TKey, TData>* subTree, const TKey& key, const TData& data)
 {
 	if (subTree->getKey() == key)
+		cout << "Elemet with key " << key << " is exist" << endl;
 	else if (subTree->getKey() < key)
 	{
 		if (subTree->getRight())
