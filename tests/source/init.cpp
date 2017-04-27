@@ -9,10 +9,11 @@ SCENARIO ("constructor"){
 
 SCENARIO("insert") {
    BinarySearchTree<int, char> BST;
-	BST.insert(1);
-	REQUIRE(BST.key() == 1);
-	REQUIRE(BST.getRight() == 0);
-	REQUIRE(BST.getLeft() == 0);
+	BST.insert(1, 'a');
+	REQUIRE(tr.Get_Root()->_key == 1);
+	REQUIRE(tr.Get_Root()->_data_ == 'a');
+	REQUIRE(tr.Get_Root()->_left == 0);
+	REQUIRE(tr.Get_Root()->_right == 0);
    
    
 }
