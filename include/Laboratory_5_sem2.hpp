@@ -62,7 +62,7 @@ public:
 	BinarySearchTree();
 	TreeNode<TKey, TData>* getRoot() const { return _root; }
 
-
+	TreeNode<TKey, TData>* Get_Root();
 	void insert(const TKey& key, const TData& data);
 	TData* find(const TKey& key);
 	void remove(const TKey& key);
@@ -71,7 +71,7 @@ public:
 	~BinarySearchTree();
 
 private:
-	TreeNode<TKey, TData>* Get_Root();
+	
 	void recursiveInsert(TreeNode<TKey, TData>* subTree, const TKey& key, const TData& data);
 	TData* recursiveFind(TreeNode<TKey, TData>* subTree, const TKey& key);
 	TreeNode<TKey, TData>* recursiveFindNode(TreeNode<TKey, TData>* subTree, const TKey& key);
