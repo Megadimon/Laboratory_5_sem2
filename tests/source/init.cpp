@@ -11,7 +11,7 @@ SCENARIO("insert") {
    BinarySearchTree<int,char> BST;
 	BST.insert(1,'a');
 	REQUIRE(BST.key() == 1);
-	REQUIRE(DST.data() == 'a');
+	REQUIRE(BST.data() == 'a');
 	REQUIRE(BST.root() == 0);
    
    
