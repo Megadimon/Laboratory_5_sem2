@@ -216,25 +216,7 @@ BinarySearchTree<TKey, TData>::~BinarySearchTree()
 template <typename TKey, typename TData>
 istream& operator >> (istream& str, BinarySearchTree<TKey, TData>& tree)
 {
-	char c = 0;
-	str >> c;
-	if (c != '[')
-
-	TKey key;
-	TData data;
-	while (str.peek() != ']')
-	{
-		str >> key;
-		if (str.fail())
-			
-
-		str >> data;
-		if (str.fail())
-			
-
-		tree.insert(key, data);
-	}
-	str.get();
+	https://github.com/Megadimon/Laboratory_5_sem2/blob/master/include/Laboratory_5_sem2.hpp
 
 	return str;
 }
@@ -242,20 +224,22 @@ istream& operator >> (istream& str, BinarySearchTree<TKey, TData>& tree)
 template <typename TKey, typename TData>
 ostream& operator << (ostream& str, const BinarySearchTree<TKey, TData>& tree)
 {
-	if (tree.getRoot())
+	char c = 0;
+	str >> c;
+	if (c != '[')
+	return str;	
+	TKey key;
+	TData data;
+	while (str.peek() != ']')
 	{
-		int n = 0;
-		tree.print(str, tree.getRoot(), 0, &n);
-		str << endl;
-		tree.print1(str, tree.getRoot(), 0);
-
-
-		str << n << endl;
+		str >> key;
+		str >> data;
+		tree.insert(key, data);
 	}
+	str.get();
 
 	return str;
 }
-
 
 int main()
 {
