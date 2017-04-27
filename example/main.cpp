@@ -62,7 +62,7 @@ public:
 	BinarySearchTree();
 	TreeNode<TKey, TData>* getRoot() const { return _root; }
 
-
+	TreeNode<TKey, TData>* Get_Root();
 	void insert(const TKey& key, const TData& data);
 	TData* find(const TKey& key);
 	void remove(const TKey& key);
@@ -71,7 +71,7 @@ public:
 	~BinarySearchTree();
 
 private:
-
+	
 	void recursiveInsert(TreeNode<TKey, TData>* subTree, const TKey& key, const TData& data);
 	TData* recursiveFind(TreeNode<TKey, TData>* subTree, const TKey& key);
 	TreeNode<TKey, TData>* recursiveFindNode(TreeNode<TKey, TData>* subTree, const TKey& key);
@@ -96,7 +96,7 @@ template <typename TKey, typename TData>
 void BinarySearchTree<TKey, TData>::recursiveInsert(TreeNode<TKey, TData>* subTree, const TKey& key, const TData& data)
 {
 	if (subTree->getKey() == key)
-		cout << "Elemet with key " << key << " is exist" << endl;
+		cout << "Elemet " << data << " is exist" << endl;
 	else if (subTree->getKey() < key)
 	{
 		if (subTree->getRight())
@@ -179,6 +179,12 @@ TreeNode<TKey, TData>* BinarySearchTree<TKey, TData>::recursiveFindNode(TreeNode
 }
 
 template <typename TKey, typename TData>
+TreeNode<TKey, TData>* BinarySearchTree<TKey, TData>::Get_Root() 
+{ 
+return _root; 
+}
+
+template <typename TKey, typename TData>
 void BinarySearchTree<TKey, TData>::print(ostream& str, TreeNode<TKey, TData>* subTree, int lvl, int* n) const
 {
 	if (subTree->getRight())
@@ -220,7 +226,7 @@ istream& operator >> (istream& str, BinarySearchTree<TKey, TData>& tree)
 	char c = 0;
 	str >> c;
 	if (c != '[')
-		return str;
+	return str;	
 	TKey key;
 	TData data;
 	while (str.peek() != ']')
