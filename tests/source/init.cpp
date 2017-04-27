@@ -4,6 +4,7 @@
 SCENARIO ("constructor"){
 	BinarySearchTree<int,char> BST;
 	REQUIRE(BST.Get_Root() == 0);
+}
     
  /*  
 SCENARIO("insert") {
