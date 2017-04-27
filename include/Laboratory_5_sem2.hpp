@@ -71,7 +71,7 @@ public:
 	~BinarySearchTree();
 
 private:
-
+	TreeNode<TKey, TData>* Get_Root();
 	void recursiveInsert(TreeNode<TKey, TData>* subTree, const TKey& key, const TData& data);
 	TData* recursiveFind(TreeNode<TKey, TData>* subTree, const TKey& key);
 	TreeNode<TKey, TData>* recursiveFindNode(TreeNode<TKey, TData>* subTree, const TKey& key);
@@ -176,6 +176,12 @@ TreeNode<TKey, TData>* BinarySearchTree<TKey, TData>::recursiveFindNode(TreeNode
 		return recursiveFindNode(subTree->getRight(), key);
 	else
 		return recursiveFindNode(subTree->getLeft(), key);
+}
+
+template <typename TKey, typename TData>
+TreeNode<TKey, TData>* BinarySearchTree<TKey, TData>::Get_Root() 
+{ 
+return _root; 
 }
 
 template <typename TKey, typename TData>
