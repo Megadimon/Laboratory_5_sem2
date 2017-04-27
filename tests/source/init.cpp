@@ -8,7 +8,7 @@ SCENARIO("insert") {
     
     REQUIRE( rv == 10);
 }
-
+/*
 SCENARIO("print") {
     BinarySearchTree<int, char> r;
     BinarySearchTree<int, char>* TreeNode;
@@ -16,7 +16,7 @@ SCENARIO("print") {
     
     REQUIRE( rv == 11);
 }
-/*
+
 SCENARIO("Search") {
     BinarySearchTree<unsigned int> r;
     BinarySearchTree<unsigned int>* root;
