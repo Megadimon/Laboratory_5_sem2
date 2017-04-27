@@ -3,7 +3,7 @@
 
 SCENARIO ("constructor"){
 	BinarySearchTree<int,char> BST;
-	REQUIRE(BST.find(1) == nullptr);
+	REQUIRE(BST.Get_Root() == 0);
     
  /*  
 SCENARIO("insert") {
