@@ -1,6 +1,11 @@
 #include <Laboratory_5_sem2.hpp>
 #include <catch.hpp>
 
+SCENARIO ("constructor"){
+	BinarySearchTree<int,char> BST;
+	REQUIRE(BST.root() == 0);
+    
+ /*  
 SCENARIO("insert") {
     BinarySearchTree<int, char> r;
     BinarySearchTree<int, char>* TreeNode;
@@ -8,7 +13,7 @@ SCENARIO("insert") {
     
     REQUIRE( rv == 10);
 }
-/*
+
 SCENARIO("print") {
     BinarySearchTree<int, char> r;
     BinarySearchTree<int, char>* TreeNode;
