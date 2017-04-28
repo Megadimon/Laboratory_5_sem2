@@ -6,7 +6,7 @@ SCENARIO ("constructor"){
 	REQUIRE(BST.Get_Root() == 0);
 }
     
-
+/*
 SCENARIO("insert") {
    BinarySearchTree<int, char> BST;
 	BST.insert(1, 'a');
@@ -17,7 +17,7 @@ SCENARIO("insert") {
 	
    
 }
-/*
+
 SCENARIO("print") {
     BinarySearchTree<int, char> r;
     BinarySearchTree<int, char>* TreeNode;
